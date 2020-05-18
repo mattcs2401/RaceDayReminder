@@ -11,6 +11,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mcssoft.racedayreminder.R
 import com.mcssoft.racedayreminder.databinding.MainActivityBinding
 import com.mcssoft.racedayreminder.utility.Constants
+import kotlinx.android.synthetic.main.main_activity.view.*
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 

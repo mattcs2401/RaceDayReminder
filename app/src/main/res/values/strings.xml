@@ -10,6 +10,9 @@
     <string name="lbl_race_count">Count</string>
     <string name="lbl_notifications">Notifications</string>
 
+    <!-- ActionBar title. -->
+    <string name="title_race_day">Race Day</string>
+
     <!-- Keys. -->
     <string name="key_edit_type">ke_edit_type</string>
 

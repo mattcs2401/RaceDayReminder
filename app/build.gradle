@@ -53,6 +53,14 @@ dependencies {
     implementation 'androidx.preference:preference:1.1.1'
 
     // Room database.
-    implementation 'android.arch.persistence.room:runtime:2.1.0-alpha02'
-    kapt 'android.arch.persistence.room:compiler:2.1.0-alpha02'
+    implementation 'androidx.room:room-runtime:2.1.0-alpha02'
+    kapt 'androidx.room:room-compiler:2.1.0-alpha02'
+
+//    implementation 'android.arch.persistence.room:runtime:2.1.0-alpha02'
+//    kapt 'android.arch.persistence.room:compiler:2.1.0-alpha02'
+
+    // Koin: https://doc.insert-koin.io/#/
+    implementation 'org.koin:koin-core:2.1.5'
+    implementation 'org.koin:koin-android:2.1.5'
+    implementation 'org.koin:koin-androidx-viewmodel:2.1.5'
 }
