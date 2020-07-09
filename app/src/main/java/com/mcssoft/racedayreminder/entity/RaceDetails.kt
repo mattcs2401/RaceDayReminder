@@ -1,4 +1,4 @@
-package com.mcssoft.racedayreminder.database.entity
+package com.mcssoft.racedayreminder.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

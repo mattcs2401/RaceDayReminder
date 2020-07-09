@@ -11,7 +11,7 @@ class BaseApplication : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@BaseApplication)
-            modules(listOf(appModule, sharedPrefsModule, roomModule, repoModule, viewModelModule))
+            modules(listOf(appModule, sharedPrefsModule, repoModule, viewModelModule))
         }
     }
 }

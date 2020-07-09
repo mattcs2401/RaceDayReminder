@@ -1,6 +1,5 @@
 package com.mcssoft.racedayreminder.ui.activity
 
-import android.app.NotificationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -11,7 +10,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mcssoft.racedayreminder.R
 import com.mcssoft.racedayreminder.databinding.MainActivityBinding
 import com.mcssoft.racedayreminder.utility.Constants
-import kotlinx.android.synthetic.main.main_activity.view.*
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -25,11 +23,11 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         binding = MainActivityBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
 
-        // Cancel any previous notifications.
-        // TODO - this the right place in lifecycle ?
-        (getSystemService(NOTIFICATION_SERVICE) as NotificationManager).cancelAll()
+//        // Cancel any previous notifications.
+//        // TODO - this the right place in lifecycle ?
+//        (getSystemService(NOTIFICATION_SERVICE) as NotificationManager).cancelAll()
 
-        // Check RacePreferences (if not set, then set them to defaults)
+//        // Check RacePreferences (if not set, then set them to defaults)
 //        iRacePreferences.preferencesCheck()
 
         // Toolbar.
@@ -54,10 +52,10 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     //<editor-fold default state="collapsed" desc="Region: Bottom navigation listener">
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         when(menuItem.itemId) {
-            R.id.id_mnu_bnv_settings -> {
-                // Bottom navigation menu Settings.
-                navController.navigate(R.id.preferencesFragment)
-            }
+//            R.id.id_mnu_bnv_settings -> {
+//                // Bottom navigation menu Settings.
+//                navController.navigate(R.id.preferencesFragment)
+//            }
             R.id.id_mnu_bnv_add -> {
                 // Bottom navigation menu Add.
                 val bundle = Bundle()
@@ -68,5 +66,4 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         return false
     }
     //</editor-fold>
-
 }

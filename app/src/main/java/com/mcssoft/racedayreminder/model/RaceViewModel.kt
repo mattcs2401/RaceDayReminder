@@ -2,10 +2,16 @@ package com.mcssoft.racedayreminder.model
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.mcssoft.racedayreminder.database.entity.RaceDetails
+import com.mcssoft.racedayreminder.entity.RaceDetails
 import com.mcssoft.racedayreminder.interfaces.IRaceRepo
 
-class RaceViewModel(/*private val iRaceRepo: IRaceRepo*/) : ViewModel() {
+class RaceViewModel(private val iRaceRepo: IRaceRepo) : ViewModel() {
+
+    /**
+     * Get all the RaceDetails from the LiveData.
+     * @return A LiveData array of RaceDetails objects.
+     */
+    fun getRacesLD() : LiveData<MutableList<RaceDetails>> = iRaceRepo.getRacesLD()
 
     /**
      * Get all the RaceDetails from the LiveData.
