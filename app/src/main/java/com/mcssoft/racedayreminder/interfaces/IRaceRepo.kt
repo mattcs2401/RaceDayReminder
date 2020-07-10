@@ -5,6 +5,8 @@ import com.mcssoft.racedayreminder.entity.RaceDetails
 
 interface IRaceRepo {
 
+    companion object {}
+
     /**
      * Get all the LiveData RaceDetails. Only used by the RaceListObserver.
      */

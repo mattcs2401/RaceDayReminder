@@ -8,6 +8,7 @@
     android:layout_height="match_parent">
 
 <!--    <include layout="@layout/toolbar_base" />-->
+
     <!-- Note: Toolbar layout here instead of an "include layout" due to ViewBinding consideration. -->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"

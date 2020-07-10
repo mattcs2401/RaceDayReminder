@@ -11,7 +11,7 @@
     <string name="lbl_notifications">Notifications</string>
 
     <!-- ActionBar title. -->
-    <string name="title_race_day">Race Day</string>
+    <string name="title_race_day">Race Day Reminder</string>
 
     <!-- Keys. -->
     <string name="key_edit_type">ke_edit_type</string>
