@@ -51,10 +51,10 @@ class MainFragment : Fragment() {
         recyclerView!!.adapter = raceAdapter
 
         // If bottom nav view was previously hidden by a New or Edit etc, then show again.
-//        val bottomNavView = activity?.id_bottom_nav_view
-//        if(bottomNavView?.visibility == View.GONE) {
-//            bottomNavView.visibility = View.VISIBLE
-//        }
+        val bottomNavView = activity?.id_bottom_nav_view
+        if(bottomNavView?.visibility == View.GONE) {
+            bottomNavView.visibility = View.VISIBLE
+        }
         Log.d("TAG","MainFragment.onViewCreated")
     }
 
