@@ -52,10 +52,10 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     //<editor-fold default state="collapsed" desc="Region: Bottom navigation listener">
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         when(menuItem.itemId) {
-//            R.id.id_mnu_bnv_settings -> {
-//                // Bottom navigation menu Settings.
-//                navController.navigate(R.id.preferencesFragment)
-//            }
+            R.id.id_mnu_bnv_settings -> {
+                // Bottom navigation menu Settings.
+                navController.navigate(R.id.id_preferences_fragment)
+            }
             R.id.id_mnu_bnv_add -> {
                 // Bottom navigation menu Add.
                 val bundle = Bundle()

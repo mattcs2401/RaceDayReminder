@@ -10,10 +10,10 @@ class RaceDayViewHolder(private val view: View) : RecyclerView.ViewHolder(view),
     View.OnClickListener, PopupMenu.OnMenuItemClickListener {
 
     override fun onClick(v: View?) {
-        TODO("Not yet implemented")
+        // TBA
     }
 
     override fun onMenuItemClick(item: MenuItem?): Boolean {
-        TODO("Not yet implemented")
+        return true
     }
 }

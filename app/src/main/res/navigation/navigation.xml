@@ -16,7 +16,7 @@
             app:destination="@id/id_edit_fragment" />
         <action
             android:id="@+id/mainFragment_to_preferencesFragment"
-            app:destination="@id/preferencesFragment" />
+            app:destination="@id/id_preferences_fragment" />
         <argument
             android:name="multiSelectArray"
             app:argType="string[]" />
@@ -35,7 +35,7 @@
         </action>
     </fragment>
     <fragment
-        android:id="@+id/preferencesFragment"
+        android:id="@+id/id_preferences_fragment"
         android:name="com.mcssoft.racedayreminder.ui.fragment.PreferencesFragment"
         android:label="PreferencesFragment" >
         <action

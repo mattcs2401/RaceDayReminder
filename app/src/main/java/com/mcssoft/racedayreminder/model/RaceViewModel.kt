@@ -8,8 +8,7 @@ import com.mcssoft.racedayreminder.repository.RaceRepository
 
 /**
  * Wrapper class for the ViewModel.
- * @param raceRepo: Repository instance.
- * @note Parameter is a singleton, see modules file.
+ * @param iRaceRepo: Repository interface.
  */
 class RaceViewModel(private val iRaceRepo: IRaceRepo) : ViewModel() {
 
