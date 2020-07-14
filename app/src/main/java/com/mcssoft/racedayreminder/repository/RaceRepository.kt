@@ -7,6 +7,8 @@ import androidx.lifecycle.MutableLiveData
 import com.mcssoft.racedayreminder.database.RaceDatabase
 import com.mcssoft.racedayreminder.entity.RaceDetails
 import com.mcssoft.racedayreminder.interfaces.IRaceRepo
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.koin.core.KoinComponent
 
 /**
@@ -19,33 +21,23 @@ class RaceRepository(private val context: Context) : IRaceRepo {
     private var raceDetailsDao =
         RaceDatabase.getDatabase(context.applicationContext as Application).raceDetailsDao()
 
-    // Backing data.
-    private val racesList = mutableListOf<RaceDetails>()
-    private val lRaces: MutableLiveData<List<RaceDetails>> = MutableLiveData()
-
-    init {
-        lRaces.value = racesList
-    }
-
-//    /**
-//     * Initialise the backing data.
-//     * @Note: This must be the first call.
-//     */
-//    fun initialise() {
-//        lRaces.value = getRacesLD() as MutableList<RaceDetails>
-//    }
-
-    //<editor-fold default state="collapsed" desc="Region: Observer related">
     /**
-     * Get all the LiveData RaceDetails. Only used by the RaceListObserver.
+     * Get all the LiveData RaceDetails.
+     * @note: Must be called within a coroutine.
      */
     override fun getRacesLD(): LiveData<MutableList<RaceDetails>> = raceDetailsDao.getRacesLD()
 
     /**
-     * Get a LiveData RaceDetails. Only used by the RaceObserver.
+     * Get a LiveData RaceDetails.
+     * @note: Must be called within a coroutine.
      */
-    fun getRaceLD(id: Long): LiveData<RaceDetails> = raceDetailsDao.getRaceLD(id)
-    //</editor-fold>
+    override fun getRaceLD(id: Long): LiveData<RaceDetails> = raceDetailsDao.getRaceLD(id)
+
+    /**
+     * Insert a new RaceDetails.
+     * // TBA - a return value Long ?
+     */
+    override suspend fun insertRace(raceDetails: RaceDetails) = raceDetailsDao.insertRace(raceDetails)
 
 //    /**
 //     * Insert a RaceDetails object.

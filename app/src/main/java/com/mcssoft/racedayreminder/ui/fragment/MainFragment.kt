@@ -34,7 +34,7 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // Set toolbar. Note: synthetic used here because can't use view binding.
+        // Set toolbar. Note: synthetic used here because can't seem to use view binding.
         (activity?.id_toolbar)?.title = getString(R.string.title_race_day)
         // Set for menu.
         setHasOptionsMenu(true)
