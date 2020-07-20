@@ -1,43 +1,44 @@
 package com.mcssoft.racedayreminder.model
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.mcssoft.racedayreminder.entity.RaceDetails
+import com.mcssoft.racedayreminder.common.BaseViewModel
+import com.mcssoft.racedayreminder.database.entity.Race
 import com.mcssoft.racedayreminder.interfaces.IRaceRepo
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 /**
  * Wrapper class for the ViewModel.
  * @param iRaceRepo: Repository interface.
  */
-class RaceViewModel(private val iRaceRepo: IRaceRepo) : ViewModel() {
+class RaceViewModel(private val iRaceRepo: IRaceRepo, uiContext: Context) : BaseViewModel(uiContext) {
 
     // Backing data.
-    private val racesList = mutableListOf<RaceDetails>()
-    private lateinit var lRaces: LiveData<MutableList<RaceDetails>> //= MutableLiveData()
+    // Note: if put assignment in an init{} block, editor says can join declaration and assignment.
+    private lateinit var lRaces: MutableLiveData<MutableList<Race>>
 
-    /**
-     * Get all the RaceDetails from the LiveData.
-     * @return A LiveData array of RaceDetails objects.
-     */
-    fun getRacesLD() : LiveData<MutableList<RaceDetails>> {
-        if(!::lRaces.isInitialized) {
-            lRaces = MutableLiveData<MutableList<RaceDetails>>()
-        }
-//        viewModelScope.launch(Dispatchers.IO) {
-            lRaces = iRaceRepo.getRacesLD()
-//        }
-        return lRaces
-//        return iRaceRepo.getRacesLD()
+    init {
+        lRaces = MutableLiveData()//<MutableList<Race>>
     }
+        /**
+         * Get all the Race from the LiveData.
+         * @return A list of Race objects wrapped in LiveData.
+         */
+        fun getRacesLD() : MutableLiveData<MutableList<Race>> = lRaces
 
-//    /**
-//     * Utility method, change the backing data.
-//     * @param lRaces: The new/changed backing data.
-//     */
-//    fun setData(lRaces: MutableList<RaceDetails>) = iRaceRepo.setData(lRaces)
+        /**
+         * Get all the Race from the LiveData.
+         * @return A list of Race objects wrapped in MutableLiveData.
+         */
+        fun getRaces() = lRaces
+
+        /**
+         *
+         */
+        fun getRaceCount(): Job = launch {
+            iRaceRepo.getRaceCount()
+        }
 
 }

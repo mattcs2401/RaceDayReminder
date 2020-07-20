@@ -31,7 +31,7 @@
             app:destination="@id/id_main_fragment">
             <!--            <argument-->
             <!--                android:name="raceDetailsArg"-->
-            <!--                app:argType="mcssoft.com.racereminderac.entity.RaceDetails"/>-->
+            <!--                app:argType="mcssoft.com.racereminderac.entity.Race"/>-->
         </action>
     </fragment>
     <fragment

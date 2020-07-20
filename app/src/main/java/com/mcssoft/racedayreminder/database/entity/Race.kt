@@ -1,4 +1,4 @@
-package com.mcssoft.racedayreminder.entity
+package com.mcssoft.racedayreminder.database.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -6,11 +6,11 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity(tableName = "race_details")
-data class RaceDetails(@ColumnInfo(name = "CityCode") var cityCode: String,
-                       @ColumnInfo(name = "RaceCode") var raceCode: String,
-                       @ColumnInfo(name = "RaceNum")  var raceNum: String,
-                       @ColumnInfo(name = "RaceSel")  var raceSel: String,
-                       @ColumnInfo(name = "RaceTimeS") var raceTimeS: String) : Serializable {
+data class Race(@ColumnInfo(name = "CityCode") var cityCode: String,
+                @ColumnInfo(name = "RaceCode") var raceCode: String,
+                @ColumnInfo(name = "RaceNum")  var raceNum: String,
+                @ColumnInfo(name = "RaceSel")  var raceSel: String,
+                @ColumnInfo(name = "RaceTimeS") var raceTimeS: String) : Serializable {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "_id")

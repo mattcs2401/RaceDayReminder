@@ -1,4 +1,4 @@
-package com.mcssoft.racedayreminder
+package com.mcssoft.racedayreminder.common
 
 import android.app.Application
 import com.mcssoft.racedayreminder.di.*
