@@ -1,9 +1,9 @@
 package com.mcssoft.racedayreminder.model
 
 import android.content.Context
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.mcssoft.racedayreminder.common.BaseViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.mcssoft.racedayreminder.database.entity.Race
 import com.mcssoft.racedayreminder.interfaces.IRaceRepo
 import kotlinx.coroutines.Job
@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
  * Wrapper class for the ViewModel.
  * @param iRaceRepo: Repository interface.
  */
-class RaceViewModel(private val iRaceRepo: IRaceRepo, uiContext: Context) : BaseViewModel(uiContext) {
+class RaceViewModel(private val iRaceRepo: IRaceRepo, uiContext: Context) : ViewModel() {
 
     // Backing data.
     // Note: if put assignment in an init{} block, editor says can join declaration and assignment.
@@ -37,8 +37,8 @@ class RaceViewModel(private val iRaceRepo: IRaceRepo, uiContext: Context) : Base
         /**
          *
          */
-        fun getRaceCount(): Job = launch {
-            iRaceRepo.getRaceCount()
+        fun getRaceCount(): Job = viewModelScope.launch {
+            val count = iRaceRepo.getRaceCount()
         }
 
 }
