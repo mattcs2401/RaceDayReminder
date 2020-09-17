@@ -4,9 +4,9 @@ import androidx.lifecycle.Observer
 import com.mcssoft.racedayreminder.database.entity.Race
 import com.mcssoft.racedayreminder.model.RaceViewModel
 
-class RaceListObserver(raceViewModel: RaceViewModel) : Observer<MutableList<Race>> {
+class RaceListObserver(raceViewModel: RaceViewModel) : Observer<List<Race>> {
 
-    override fun onChanged(t: MutableList<Race>?) {
+    override fun onChanged(t: List<Race>?) {
         // TBA
     }
 }

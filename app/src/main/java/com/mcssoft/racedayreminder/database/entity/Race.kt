@@ -1,5 +1,6 @@
 package com.mcssoft.racedayreminder.database.entity
 
+import androidx.annotation.Nullable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -17,18 +18,19 @@ data class Race(@ColumnInfo(name = "CityCode") var cityCode: String,
     var id: Long? = null    // value inserted by Room.
 
     // Non-mandatory or default values.
+    @Nullable
     @ColumnInfo(name = "RaceDate")
-    var raceDate: String = "01/01/1970"     // Race date.
+    var raceDate: String? = "01/01/1970"     // Race date.
     @ColumnInfo(name = "RaceTimeL")
-    var raceTimeL: Long = 0                 // Race time as Long val.
+    var raceTimeL: Long? = 0                 // Race time as Long val.
     @ColumnInfo(name = "RaceSel2")
-    var raceSel2: String = ""               // 2nd Race sel (multi sel).
+    var raceSel2: String? = ""               // 2nd Race sel (multi sel).
     @ColumnInfo(name = "RaceSel3")
-    var raceSel3: String = ""               // 3rd "    "    "
+    var raceSel3: String? = ""               // 3rd "    "    "
     @ColumnInfo(name = "RaceSel4")
-    var raceSel4: String = ""               // 4th "    "    "
+    var raceSel4: String? = ""               // 4th "    "    "
     @ColumnInfo(name = "Extras")
-    var raceExtras: Boolean = false         // flag to indicate RaceExtras exist.
+    var raceExtras: Boolean? = false         // flag to indicate RaceExtras exist.
 
     /**
      * Get the meeting identifier.

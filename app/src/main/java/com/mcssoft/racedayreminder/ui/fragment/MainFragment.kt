@@ -39,7 +39,7 @@ class MainFragment : Fragment() {
         // Set for menu.
         setHasOptionsMenu(true)
         // Set the view model and observe.
-        raceViewModel.getRacesLD().observe(viewLifecycleOwner, RaceListObserver(raceViewModel))
+        raceViewModel.races.observe(viewLifecycleOwner, RaceListObserver(raceViewModel))
         // Set adapter/recyclerview.
         raceAdapter = RaceDayAdapter()
         recyclerView = binding!!.idRecyclerView

@@ -16,5 +16,5 @@ val repoModule = module {
 }
 
 val viewModelModule = module {
-    viewModel { RaceViewModel(get(), androidContext()) }
+    viewModel { RaceViewModel(get()) } //, get())}
 }

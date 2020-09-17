@@ -1,28 +1,19 @@
 package com.mcssoft.racedayreminder.interfaces
 
+import androidx.lifecycle.LiveData
 import com.mcssoft.racedayreminder.database.entity.Race
 
 interface IRaceRepo {
 
-//  /**
-//   * Get all the Race.
-//   * @return A mutable list of all Race wrapped in LiveData.
-//   */
-//  fun getRacesLD(): LiveData<MutableList<Race>>
+  /**
+   * Establish the backing data in the repository.
+   */
+  suspend fun initialise()
 
-  suspend fun getRaces(): List<Race>
+  fun getAllRaces(): LiveData<List<Race>>
 
-  suspend fun getRace(id: Int): Race
+//  suspend fun insertRace(race: Race): Long
 
-//  /**
-//   * Get a Race.
-//   * @param id: The id of the object.
-//   * @return A Race wrapped in LiveData.
-//   */
-//  fun getRaceLD(id: Long): LiveData<Race>
-
-  suspend fun insertRace(race: Race)
-
-  suspend fun getRaceCount(): Int
+  fun getRaceCount(): Int
 
 }

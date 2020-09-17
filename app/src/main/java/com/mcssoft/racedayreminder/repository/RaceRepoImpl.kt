@@ -2,9 +2,13 @@ package com.mcssoft.racedayreminder.repository
 
 import android.app.Application
 import android.content.Context
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.mcssoft.racedayreminder.database.RaceDatabase
 import com.mcssoft.racedayreminder.database.entity.Race
 import com.mcssoft.racedayreminder.interfaces.IRaceRepo
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 /**
  * Repository implementation. Manages data to/from the database and the UI through the RaceViewModel.
@@ -12,39 +16,41 @@ import com.mcssoft.racedayreminder.interfaces.IRaceRepo
  */
 class RaceRepoImpl(private val context: Context) : IRaceRepo {
 
+//    lateinit var lRaces: LiveData<List<Race>>
+
     // Database access.
     private var raceDao =
         RaceDatabase.getDatabase(context.applicationContext as Application).raceDao()
 
-    override suspend fun getRaces(): List<Race> {
-        TODO("Not yet implemented")
+    /**
+     * Initialise the backing data.
+     */
+    override suspend fun initialise() {
+//        lRaces = getAllRaces()
+        getAllRaces()
     }
-
-    override suspend fun getRace(id: Int): Race {
-        TODO("Not yet implemented")
-    }
-
-//    /**
-//     * Get all the LiveData Race.
-//     * @note: Must be called within a coroutine.
-//     */
-//    override fun getRacesLD(): LiveData<MutableList<Race>> = raceDetailsDao.getRacesLD()
-
-//    /**
-//     * Get a LiveData Race.
-//     * @note: Must be called within a coroutine.
-//     */
-//    override fun getRaceLD(id: Long): LiveData<Race> = raceDetailsDao.getRaceLD(id)
 
     /**
-     * Insert a new Race.
-     * // TBA - a return value Long ?
+     * Get all the Races.
      */
-    override suspend fun insertRace(race: Race) = raceDao.insertRace(race)
+    override fun getAllRaces() : LiveData<List<Race>> = raceDao.getAllRaces()
+
+//    override suspend fun getAllRaces(): LiveData<List<Race>> {
+//        return withContext(Dispatchers.IO) {
+//            val lRaces = raceDao.getRaces()
+//            lRaces
+//        }
+//    }
+
+//    /**
+//     * Insert a new Race.
+//     * // TBA - a return value Long ?
+//     */
+//    override suspend fun insertRace(race: Race) = raceDao.insertRace(race)
 
     /**
      * Get the current count of rows in the race_details table.
      */
-    override suspend fun getRaceCount(): Int = raceDao.getCount()
+    override fun getRaceCount(): Int = raceDao.getCount()
 
 }

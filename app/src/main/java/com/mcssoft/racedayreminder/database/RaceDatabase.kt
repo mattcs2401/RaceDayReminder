@@ -26,24 +26,15 @@ abstract class RaceDatabase : RoomDatabase() {
                 .build()
                 .also { instance = it }
         }
-//        fun getInstance(context: Application?): RaceDatabase? {
-//            if (instance == null) {
-//                synchronized(RaceDatabase::class) {
-//                    instance = Room.databaseBuilder(context!!.applicationContext,
-//                        RaceDatabase::class.java, "Races.db")
-//                        .fallbackToDestructiveMigration()
-//                        .build()
-//                }
-//            }
-//            return instance
-//        }
 
         private val db_callback = object : RoomDatabase.Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
-//                db.execSQL("TBA")
+                db.execSQL("insert into race_details(CityCode, RaceCode, RaceNum, RaceSel, RaceTimeS)" +
+                        " values ('B', 'R', '2', '3', '1145')")
             }
         }
     }
+
 
 }
