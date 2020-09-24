@@ -1,14 +1,15 @@
 package com.mcssoft.racedayreminder.repository
 
-import android.app.Application
 import android.content.Context
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.mcssoft.racedayreminder.database.RaceDatabase
 import com.mcssoft.racedayreminder.database.entity.Race
-import com.mcssoft.racedayreminder.interfaces.IRaceRepo
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+
+interface IRaceRepo {
+    // Here for DI. Can't seem to get it to work when in a separate file.
+    suspend fun getAllRaces() : LiveData<List<Race>>
+    suspend fun getRaceCount(): LiveData<Int>
+}
 
 /**
  * Repository implementation. Manages data to/from the database and the UI through the RaceViewModel.
@@ -16,41 +17,23 @@ import kotlinx.coroutines.withContext
  */
 class RaceRepoImpl(private val context: Context) : IRaceRepo {
 
-//    lateinit var lRaces: LiveData<List<Race>>
-
-    // Database access.
-    private var raceDao =
-        RaceDatabase.getDatabase(context.applicationContext as Application).raceDao()
-
-    /**
-     * Initialise the backing data.
-     */
-    override suspend fun initialise() {
-//        lRaces = getAllRaces()
-        getAllRaces()
-    }
+    //Database access.
+     private var iRaceDao = RaceDatabase.getDatabase(context.applicationContext).raceDao()
 
     /**
      * Get all the Races.
      */
-    override fun getAllRaces() : LiveData<List<Race>> = raceDao.getAllRaces()
+    override suspend fun getAllRaces() : LiveData<List<Race>> = iRaceDao.getAllRaces()
 
-//    override suspend fun getAllRaces(): LiveData<List<Race>> {
-//        return withContext(Dispatchers.IO) {
-//            val lRaces = raceDao.getRaces()
-//            lRaces
-//        }
-//    }
+    /**
+     * Get the current count of rows in the race_details table.
+     */
+    override suspend fun getRaceCount(): LiveData<Int> = iRaceDao.getCount()
 
 //    /**
 //     * Insert a new Race.
 //     * // TBA - a return value Long ?
 //     */
 //    override suspend fun insertRace(race: Race) = raceDao.insertRace(race)
-
-    /**
-     * Get the current count of rows in the race_details table.
-     */
-    override fun getRaceCount(): Int = raceDao.getCount()
 
 }

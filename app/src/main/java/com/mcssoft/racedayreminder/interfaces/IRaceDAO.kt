@@ -17,7 +17,7 @@ interface IRaceDAO {
 //    fun getRace(id: Long): Race  //Note: Can't do a return of LiveData<Race>.
 
     @Query("select count (*) from race_details")
-    fun getCount(): Int
+    fun getCount(): LiveData<Int>
 
 //    @Query("delete from race_details where _id = :id")
 //    fun deleteRace(id: Long): Int

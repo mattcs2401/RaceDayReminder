@@ -1,15 +1,11 @@
 package com.mcssoft.racedayreminder.model
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mcssoft.racedayreminder.database.entity.Race
-import com.mcssoft.racedayreminder.interfaces.IRaceRepo
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.mcssoft.racedayreminder.repository.IRaceRepo
+import kotlinx.coroutines.*
 
 /**
  * Wrapper class for the ViewModel.
@@ -17,33 +13,44 @@ import kotlinx.coroutines.withContext
  */
 class RaceViewModel(private val iRaceRepo: IRaceRepo) : ViewModel() {
 
+    lateinit var count: LiveData<Int>
+    lateinit var cache : LiveData<List<Race>>
+
     init {
-        initialise()
+        getRaces()
+        getCount()
+//        cache = getAllRaces()
+//        count = getRaceCount()
     }
 
-    private fun initialise() {
+    fun getAllRaces(): LiveData<List<Race>> {
+        lateinit var value: LiveData<List<Race>>
+
         viewModelScope.launch {
-            iRaceRepo.initialise()
+            val result = iRaceRepo.getAllRaces()//= async(Dispatchers.IO){ raceRepo.getAllRaces() }
+            value = result//.await()
+        }
+        return value
+    }
+
+    fun getRaceCount(): LiveData<Int> {
+        lateinit var count: LiveData<Int>
+        viewModelScope.launch {
+            val result = iRaceRepo.getRaceCount()// = async(Dispatchers.IO) { raceRepo.getRaceCount() }
+            count = result//.await()
+        }
+        return count
+    }
+
+    private fun getRaces() {
+        viewModelScope.launch {
+            cache = iRaceRepo.getAllRaces()
         }
     }
 
-    val races = iRaceRepo.getAllRaces()
-
-    var count: Int = iRaceRepo.getRaceCount()
-
-    var bp= ""
-
-//    fun getCount() {
-//        viewModelScope.launch {
-//            count = iRaceRepo.getRaceCount()
-//        }
-//    }
-
-//    suspend fun getRaceCount(): Int {
-//      return withContext(Dispatchers.IO) {
-//          val count = iRaceRepo.getRaceCount()
-//          count
-//      }
-//    }
-
+    private fun getCount() {
+        viewModelScope.launch {
+            count  = iRaceRepo.getRaceCount()
+        }
+    }
 }

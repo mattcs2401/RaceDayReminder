@@ -1,6 +1,7 @@
 package com.mcssoft.racedayreminder.database
 
 import android.app.Application
+import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -17,7 +18,7 @@ abstract class RaceDatabase : RoomDatabase() {
         @Volatile
         private var instance: RaceDatabase? = null
 
-        fun getDatabase(context: Application): RaceDatabase {
+        fun getDatabase(context: Context): RaceDatabase {
             //https://proandroiddev.com/sqlite-triggers-android-room-2e7120bb3e3a
             return instance ?: Room
                 .databaseBuilder(context.applicationContext,

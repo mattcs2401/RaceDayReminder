@@ -16,46 +16,48 @@ import com.mcssoft.racedayreminder.observer.RaceListObserver
 import com.mcssoft.racedayreminder.utility.BackPressCB
 import org.koin.android.ext.android.inject
 import kotlinx.android.synthetic.main.main_activity.*
+import org.koin.android.ext.android.get
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : Fragment() {
 
-    private val raceViewModel: RaceViewModel by inject()
+    // DI.
+    private val raceViewModel: RaceViewModel by viewModel()
+    private val raceAdapter: RaceDayAdapter by inject()
+    private val backPressCallback: BackPressCB by inject()
 
-    private var binding: MainFragmentBinding? = null
-    private var raceAdapter: RaceDayAdapter? = null
-    private var recyclerView: RecyclerView? = null
-    private var backPressCallback = BackPressCB(true)
+    // View binding.
+    private lateinit var binding: MainFragmentBinding      // view binding.
+    private lateinit var recyclerView: RecyclerView        // implemented by view binding.
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         binding = MainFragmentBinding.inflate(inflater, container, false)
-        return binding!!.root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Set toolbar. Note: synthetic used here because can't seem to use view binding.
         (activity?.id_toolbar)?.title = getString(R.string.title_race_day)
+
         // Set for menu.
         setHasOptionsMenu(true)
+
         // Set the view model and observe.
-        raceViewModel.races.observe(viewLifecycleOwner, RaceListObserver(raceViewModel))
+        raceViewModel.cache.observe(viewLifecycleOwner, RaceListObserver(raceViewModel))
+
         // Set adapter/recyclerview.
-        raceAdapter = RaceDayAdapter()
-        recyclerView = binding!!.idRecyclerView
-        recyclerView!!.layoutManager = LinearLayoutManager(context)
-        recyclerView!!.adapter = raceAdapter
+        recyclerView = binding.idRecyclerView
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = raceAdapter
+
         // If bottom nav view was previously hidden by a New or Edit etc, then show again.
         val bottomNavView = activity?.id_bottom_nav_view
         if(bottomNavView?.visibility == View.GONE) {
             bottomNavView.visibility = View.VISIBLE
         }
         Log.d("TAG","MainFragment.onViewCreated")
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        // TBA - set viewmodel here ?.
     }
 
     override fun onStart() {
@@ -67,12 +69,12 @@ class MainFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-//        registerReceivers()
+        registerReceivers()
     }
 
     override fun onPause() {
         super.onPause()
-//        unRegisterReceivers()
+        unRegisterReceivers()
     }
 
     override fun onStop() {
@@ -85,16 +87,11 @@ class MainFragment : Fragment() {
         Log.d("TAG","MainFragment.onStop")
     }
 
-    override fun onDestroyView() {
-        recyclerView = null
-        raceAdapter = null
-
-        Log.d("TAG","MainFragment.onDestroyView")
-        super.onDestroyView()
+    private fun registerReceivers() {
+        // TODO("Not yet implemented")
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        binding = null
+    private fun unRegisterReceivers() {
+        // TODO("Not yet implemented")
     }
 }
