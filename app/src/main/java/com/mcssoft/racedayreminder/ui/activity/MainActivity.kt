@@ -13,11 +13,12 @@ import com.mcssoft.racedayreminder.utility.Constants
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
-    private var binding: MainActivityBinding? = null
+    private lateinit var binding: MainActivityBinding
     private lateinit var navController: NavController
     private lateinit var bottomNavView: BottomNavigationView
 
-override fun onCreate(savedInstanceState: Bundle?) {
+    //<editor-fold default state="collapsed" desc="Region: Lifecycle">
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = MainActivityBinding.inflate(layoutInflater)
@@ -44,10 +45,10 @@ override fun onCreate(savedInstanceState: Bundle?) {
         NavigationUI.setupActionBarWithNavController(this, navController)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        binding = null
-    }
+//    override fun onDestroy() {
+//        super.onDestroy()
+//    }
+    //</editor-fold>
 
     //<editor-fold default state="collapsed" desc="Region: Bottom navigation listener">
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
@@ -66,4 +67,5 @@ override fun onCreate(savedInstanceState: Bundle?) {
         return false
     }
     //</editor-fold>
+
 }

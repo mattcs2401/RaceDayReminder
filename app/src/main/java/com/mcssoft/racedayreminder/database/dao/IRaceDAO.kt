@@ -1,4 +1,4 @@
-package com.mcssoft.racedayreminder.interfaces
+package com.mcssoft.racedayreminder.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

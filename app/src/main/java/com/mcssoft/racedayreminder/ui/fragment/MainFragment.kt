@@ -30,6 +30,7 @@ class MainFragment : Fragment() {
     private lateinit var binding: MainFragmentBinding      // view binding.
     private lateinit var recyclerView: RecyclerView        // implemented by view binding.
 
+    //<editor-fold default state="collapsed" desc="Region: Lifecycle">
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         binding = MainFragmentBinding.inflate(inflater, container, false)
@@ -45,9 +46,9 @@ class MainFragment : Fragment() {
         setHasOptionsMenu(true)
 
         // Set the view model and observe.
-        raceViewModel.cache.observe(viewLifecycleOwner, RaceListObserver(raceViewModel))
+        raceViewModel.cache.observe(viewLifecycleOwner, RaceListObserver())//raceViewModel))
 
-        // Set adapter/recyclerview.
+        // Set recyclerview.
         recyclerView = binding.idRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = raceAdapter
@@ -86,6 +87,7 @@ class MainFragment : Fragment() {
         super.onStop()
         Log.d("TAG","MainFragment.onStop")
     }
+    //</editor-fold>
 
     private fun registerReceivers() {
         // TODO("Not yet implemented")

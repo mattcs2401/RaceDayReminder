@@ -2,9 +2,9 @@ package com.mcssoft.racedayreminder.common
 
 import android.app.Application
 import com.mcssoft.racedayreminder.adapter.RaceDayAdapter
-import com.mcssoft.racedayreminder.database.RaceDatabase
-import com.mcssoft.racedayreminder.interfaces.IRaceDAO
+import com.mcssoft.racedayreminder.model.IRaceViewModel
 import com.mcssoft.racedayreminder.model.RaceViewModel
+import com.mcssoft.racedayreminder.observer.RaceListObserver
 import com.mcssoft.racedayreminder.repository.IRaceRepo
 import com.mcssoft.racedayreminder.repository.RaceRepoImpl
 import com.mcssoft.racedayreminder.utility.BackPressCB
@@ -17,15 +17,26 @@ class RaceReminderApp : Application() {
 
     private val koinModule = module {
 
-        single<IRaceRepo> { RaceRepoImpl(get()) }
+        // Notes: class RaceRepoImpl implements interface IRaceRepo.
+        single<IRaceRepo> {
+            RaceRepoImpl(get())
+        }
 
-        viewModel { RaceViewModel(get()) }
+        // Notes: class RaceViewModel parameter is IRaceRepo.
+        viewModel {
+            RaceViewModel(get())
+        }
 
+        // Notes: class RaceListObserver implements KoinComponent to enable inject of RaceViewModel.
+        single {
+            RaceListObserver()
+        }
+
+        // Notes: TBA
         single { RaceDayAdapter() }
 
         single { BackPressCB() }
 
-//        single { RaceDatabase.getDatabase(get()).raceDao() }
     }
 
     override fun onCreate() {

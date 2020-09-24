@@ -18,7 +18,7 @@ interface IRaceRepo {
 class RaceRepoImpl(private val context: Context) : IRaceRepo {
 
     //Database access.
-     private var iRaceDao = RaceDatabase.getDatabase(context.applicationContext).raceDao()
+     private var iRaceDao = RaceDatabase.getDatabase(context).raceDao()
 
     /**
      * Get all the Races.

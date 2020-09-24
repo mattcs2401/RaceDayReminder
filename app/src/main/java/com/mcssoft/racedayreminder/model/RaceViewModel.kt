@@ -7,11 +7,15 @@ import com.mcssoft.racedayreminder.database.entity.Race
 import com.mcssoft.racedayreminder.repository.IRaceRepo
 import kotlinx.coroutines.*
 
+interface IRaceViewModel {
+
+}
+
 /**
  * Wrapper class for the ViewModel.
  * @param iRaceRepo: Repository interface.
  */
-class RaceViewModel(private val iRaceRepo: IRaceRepo) : ViewModel() {
+class RaceViewModel(private val iRaceRepo: IRaceRepo) : ViewModel(), IRaceViewModel {
 
     lateinit var count: LiveData<Int>
     lateinit var cache : LiveData<List<Race>>
