@@ -2,9 +2,9 @@ package com.mcssoft.racedayreminder.ui.fragment
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.FrameLayout
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +14,7 @@ import com.mcssoft.racedayreminder.databinding.MainFragmentBinding
 import com.mcssoft.racedayreminder.model.RaceViewModel
 import com.mcssoft.racedayreminder.observer.RaceListObserver
 import com.mcssoft.racedayreminder.utility.BackPressCB
+import com.mcssoft.racedayreminder.utility.Constants
 import kotlinx.android.synthetic.main.main_activity.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -24,10 +25,6 @@ class MainFragment : Fragment() {
     private val raceViewModel: RaceViewModel by viewModel()
     private val raceAdapter: RaceDayAdapter by inject()
     private val backPressCallback: BackPressCB by inject()
-
-    // View binding.
-    private lateinit var binding: MainFragmentBinding      // view binding.
-    private lateinit var recyclerView: RecyclerView        // implemented by view binding.
 
     //<editor-fold default state="collapsed" desc="Region: Lifecycle">
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -86,6 +83,104 @@ class MainFragment : Fragment() {
         super.onStop()
         Log.d("TAG","MainFragment.onStop")
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.options_menu, menu)
+
+        refreshMenuItem = menu.findItem(R.id.id_mnu_refresh_interval)
+        deleteMenuItem = menu.findItem(R.id.id_mnu_delete_all)
+        notifyMenuItem = menu.findItem(R.id.id_mnu_notifications)
+
+        if(!raceViewModel.isEmpty()) {
+            setToolbarIcons(true)
+        } else {
+            setToolbarIcons(false)
+        }
+
+        Log.d("TAG","MainFragment.onCreateOptionsMenu")
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        /* Note: Delete All is Preference controlled. Icon may not display even if the recycler view
+                 has items. */
+        when(item.itemId) {
+            R.id.id_mnu_delete_all -> {
+                if (!raceViewModel.isEmpty()) {
+//                    iDialogManager.showDialog(
+//                        Constants.DIALOG_DELETE_ALL, null,
+//                        activity?.supportFragmentManager!!.beginTransaction(), this)
+                }
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+        return true
+    }
+    //</editor-fold>
+
+    //<editor-fold default state="collapsed" desc="Region: Utility - Toolbar.">
+    private fun setToolbarIcons(setIcon: Boolean) {
+        setRefreshIntervalMenuItem(setIcon)
+        setDeleteMenuItem(setIcon)
+        setNotifyMenuItem(setIcon)
+    }
+
+    /**
+     * ToolBar: Delete (all) option.
+     */
+    private fun setDeleteMenuItem(setDelete: Boolean) {
+//        if(setDelete) {
+//            // Only set if the Preference is enabled to start with.
+//            if(iRacePreferences.getRaceBulkDelete()) {
+//                // The Delete all preference is enabled.
+//                deleteMenuItem.isVisible = true
+//            }
+//        } else {
+//            if(deleteMenuItem.isVisible) {
+//                deleteMenuItem.isVisible = false
+//            }
+    }
+
+    /**
+     * Toolbar: Notifications being sent indicator.
+     */
+    private fun setNotifyMenuItem(doSetNotify: Boolean) {
+//        if(doSetNotify) {
+//            if (iRacePreferences.getRaceNotifyPost()) {
+//                // The notifications preference is enabled.
+//                notifyMenuItem.isVisible = true
+//            }
+//        } else {
+//            notifyMenuItem.isVisible = false
+//        }
+    }
+
+    /**
+     * ToolBar: Refresh interval indicator.
+     * @Note: Set by the DataMessage EventBus type (from RaceDetailsAdapter setData() method).
+     */
+    private fun setRefreshIntervalMenuItem(doSetRefresh: Boolean) {
+//        if(doSetRefresh) {
+//            if (iRacePreferences.getRefreshInterval()) {
+//                // Preference is set.
+//                refreshMenuItem.isVisible = true
+//                val interval = iRacePreferences.getRefreshIntervalVal()
+//                val rootView = refreshMenuItem.actionView as FrameLayout
+//                val redCircle = rootView.findViewById<FrameLayout>(R.id.id_view_refresh_red_circle)
+//                val intervalTextView = rootView.findViewById<TextView>(R.id.id_tv_refresh_period)
+//                intervalTextView.text = interval.toString()
+//                redCircle.visibility = View.VISIBLE
+//
+//                // Set alarm.
+////                RaceAlarm.getInstance(activity!!).setAlarm(interval.toLong())
+//                iRaceAlarm.setAlarm(interval.toLong())
+//            }
+//        } else {
+//            refreshMenuItem.isVisible = false
+//            // Cancel alarm.
+//            iRaceAlarm.cancelAlarm()
+//        }
+    }
     //</editor-fold>
 
     private fun registerReceivers() {
@@ -95,4 +190,13 @@ class MainFragment : Fragment() {
     private fun unRegisterReceivers() {
         // TODO("Not yet implemented")
     }
+
+    // View binding.
+    private lateinit var binding: MainFragmentBinding      // view binding.
+    private lateinit var recyclerView: RecyclerView        // implemented by view binding.
+
+    // Menu items.
+    private lateinit var refreshMenuItem: MenuItem
+    private lateinit var deleteMenuItem: MenuItem
+    private lateinit var notifyMenuItem: MenuItem
 }

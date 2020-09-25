@@ -51,4 +51,8 @@ class RaceViewModel(private val iRaceRepo: IRaceRepo) : ViewModel() {
             count = iRaceRepo.getRaceCount()
         }
     }
+
+    fun isEmpty(): Boolean {
+        return cache.value!!.isEmpty()
+    }
 }
