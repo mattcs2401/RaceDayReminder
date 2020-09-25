@@ -11,7 +11,7 @@ data class Race(@ColumnInfo(name = "CityCode") var cityCode: String,
                 @ColumnInfo(name = "RaceCode") var raceCode: String,
                 @ColumnInfo(name = "RaceNum")  var raceNum: String,
                 @ColumnInfo(name = "RaceSel")  var raceSel: String,
-                @ColumnInfo(name = "RaceTimeS") var raceTimeS: String) : Serializable {
+                @ColumnInfo(name = "RaceTimeS") var raceTimeS: String) : Serializable, Comparable<Race> {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "_id")
@@ -53,4 +53,15 @@ data class Race(@ColumnInfo(name = "CityCode") var cityCode: String,
     }
     //</editor-fold>
 
+    //<editor-fold default state="collapsed" desc="Region: Comparable">
+    // https://kotlinlang.org/docs/reference/collection-ordering.html
+
+    // Also: return zero if this object is equal other
+    //       a negative number if the object is less than other
+    //       a positive number if it is greater than other
+     override fun compareTo(other: Race): Int {
+        //TODO("Not yet implemented") - compare on race time ?
+        return 0
+    }
+    //</editor-fold>
 }

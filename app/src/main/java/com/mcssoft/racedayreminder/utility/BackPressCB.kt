@@ -2,7 +2,7 @@ package com.mcssoft.racedayreminder.utility
 
 import androidx.activity.OnBackPressedCallback
 
-class BackPressCB() : OnBackPressedCallback(true) {
+class BackPressCB : OnBackPressedCallback(true) {
 
     override fun handleOnBackPressed() {
         // do nothing

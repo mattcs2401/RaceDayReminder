@@ -2,7 +2,6 @@ package com.mcssoft.racedayreminder.adapter
 
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 

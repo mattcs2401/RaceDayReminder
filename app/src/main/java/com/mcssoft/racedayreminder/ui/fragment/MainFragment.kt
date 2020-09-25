@@ -2,10 +2,10 @@ package com.mcssoft.racedayreminder.ui.fragment
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mcssoft.racedayreminder.R
@@ -14,9 +14,8 @@ import com.mcssoft.racedayreminder.databinding.MainFragmentBinding
 import com.mcssoft.racedayreminder.model.RaceViewModel
 import com.mcssoft.racedayreminder.observer.RaceListObserver
 import com.mcssoft.racedayreminder.utility.BackPressCB
-import org.koin.android.ext.android.inject
 import kotlinx.android.synthetic.main.main_activity.*
-import org.koin.android.ext.android.get
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : Fragment() {
@@ -46,7 +45,7 @@ class MainFragment : Fragment() {
         setHasOptionsMenu(true)
 
         // Set the view model and observe.
-        raceViewModel.cache.observe(viewLifecycleOwner, RaceListObserver())//raceViewModel))
+        raceViewModel.cache.observe(viewLifecycleOwner, RaceListObserver())
 
         // Set recyclerview.
         recyclerView = binding.idRecyclerView

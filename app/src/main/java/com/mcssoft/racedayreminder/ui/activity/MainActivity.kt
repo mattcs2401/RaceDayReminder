@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         super.onCreate(savedInstanceState)
 
         binding = MainActivityBinding.inflate(layoutInflater)
-        setContentView(binding!!.root)
+        setContentView(binding.root)
 
 //        // Cancel any previous notifications.
 //        // TODO - this the right place in lifecycle ?
@@ -32,12 +32,12 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 //        iRacePreferences.preferencesCheck()
 
         // Toolbar.
-        setSupportActionBar(binding!!.idToolbar)
+        setSupportActionBar(binding.idToolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
         // Navigation.
         navController = Navigation.findNavController(this, R.id.id_nav_host_fragment)
-        bottomNavView = binding!!.idBottomNavView
+        bottomNavView = binding.idBottomNavView
         NavigationUI.setupWithNavController(bottomNavView, navController)
         bottomNavView.setOnNavigationItemSelectedListener(this)
 

@@ -2,7 +2,6 @@ package com.mcssoft.racedayreminder.common
 
 import android.app.Application
 import com.mcssoft.racedayreminder.adapter.RaceDayAdapter
-import com.mcssoft.racedayreminder.model.IRaceViewModel
 import com.mcssoft.racedayreminder.model.RaceViewModel
 import com.mcssoft.racedayreminder.observer.RaceListObserver
 import com.mcssoft.racedayreminder.repository.IRaceRepo

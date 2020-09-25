@@ -6,19 +6,19 @@ plugins {
 }
 
 android {
-    compileSdkVersion 29
-//    buildToolsVersion "29.0.3"
+    compileSdkVersion 30
+    buildToolsVersion "30.0.0"
 
     defaultConfig {
         applicationId "com.mcssoft.racedayreminder"
-        minSdkVersion 27  // OPPO API ver.
-        targetSdkVersion 29
+        minSdkVersion 27     // Notes: OPPO API ver.
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
     }
     buildFeatures {
         viewBinding = true
-        dataBinding = true
+        dataBinding = true   // TBA
     }
     buildTypes {
         release {
@@ -55,8 +55,8 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_ver"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_ver"
 
-//    // Preferences
-//    implementation 'androidx.preference:preference-ktx:1.1.1'
+    // Preferences
+    implementation 'androidx.preference:preference-ktx:1.1.1'
 
     // Room database.
     def room_ver = '2.3.0-alpha02'
