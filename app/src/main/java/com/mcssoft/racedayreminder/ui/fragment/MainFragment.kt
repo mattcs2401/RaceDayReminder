@@ -92,11 +92,11 @@ class MainFragment : Fragment() {
         deleteMenuItem = menu.findItem(R.id.id_mnu_delete_all)
         notifyMenuItem = menu.findItem(R.id.id_mnu_notifications)
 
-        if(!raceViewModel.isEmpty()) {
-            setToolbarIcons(true)
-        } else {
-            setToolbarIcons(false)
-        }
+//        if(!raceViewModel.isEmpty()) {
+//            setToolbarIcons(true)
+//        } else {
+//            setToolbarIcons(false)
+//        }
 
         Log.d("TAG","MainFragment.onCreateOptionsMenu")
     }

@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">RaceDayReminder</string>
 
+    <!-- Component labels. -->
+    <string name="city_code">City Code</string>
+    <string name="race_no">Race No</string>
+    <string name="race_sel">Race Sel</string>
+    <string name="race_time">Race Time</string>
+    <string name="race_code">Race Code</string>
+
     <!-- Menu labels. -->
     <string name="lbl_delete">Delete</string>
     <string name="lbl_delete_all">Delete All</string>
@@ -26,4 +33,13 @@
 
     <string name="edit_race">Edit Race</string>
     <string name="copy_race">Copy Race</string>
+
+    <!-- Delete Dialog text. -->
+    <string name="title_delete_all">Delete All</string>
+    <string name="message_delete_all">This cannot be undone. Are you sure?</string>
+
+    <!-- Button labels. -->
+    <string name="lbl_cancel">Cancel</string>
+    <string name="lbl_ok">OK</string>
+
 </resources>
