@@ -1,23 +1,21 @@
 package com.mcssoft.racedayreminder.ui.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.ViewStub
+import android.view.*
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mcssoft.racedayreminder.R
 import com.mcssoft.racedayreminder.databinding.EditFragmentBinding
+import com.mcssoft.racedayreminder.interfaces.IKeyboard
 import com.mcssoft.racedayreminder.interfaces.ITimePicker
+import com.mcssoft.racedayreminder.ui.dialog.keyboard.KbdLocationDialog
+import com.mcssoft.racedayreminder.ui.dialog.keyboard.KbdCodeDialog
 import kotlinx.android.synthetic.main.main_activity.*
-import org.koin.android.ext.android.bind
 
-class EditFragment: Fragment(), View.OnClickListener, ITimePicker {
+class EditFragment: Fragment(), View.OnClickListener, ITimePicker, IKeyboard {
 
     //<editor-fold default state="collapsed" desc="Region: Lifecycle">
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +34,6 @@ class EditFragment: Fragment(), View.OnClickListener, ITimePicker {
     //<editor-fold default state="collapsed" desc="Region: Utility">
     /**
      * Setup base UI elements.
-     * @Note Called by the initialiseUI() method.
      */
     private fun setupDisplayElements() {
         // Hide the bottom nav view.
@@ -60,20 +57,19 @@ class EditFragment: Fragment(), View.OnClickListener, ITimePicker {
         tvSel4.setOnClickListener(this)
         btnTime = binding.idBtnTime
         btnTime.setOnClickListener(this)
-
-//        viewStub = binding.idViewStub  // <- this shows as an error but still compiles etc.
-        viewStub = activity?.findViewById(R.id.id_view_stub) as ViewStub
-
     }
     //</editor-fold>
 
     //<editor-fold default state="collapsed" desc="Region: OnClickListener">
     override fun onClick(view: View) {
+        val bp = ""
         when(view.id) {
             tvLoc.id -> {
-                viewStub.layoutResource = R.layout.kbd_location
-                viewStub.inflate()
-                Toast.makeText(activity, "Location selected.", Toast.LENGTH_SHORT).show() }
+                KbdLocationDialog(this).show(requireActivity().supportFragmentManager, KbdLocationDialog.TAG)
+            }
+            tvCode.id -> {
+                KbdCodeDialog(this).show(requireActivity().supportFragmentManager, KbdCodeDialog.TAG)
+            }
         }
     }
     //</editor-fold>
@@ -82,6 +78,25 @@ class EditFragment: Fragment(), View.OnClickListener, ITimePicker {
     override fun setTime(time: Long) {
         // TODO("Not yet implemented")
     }
+    //</editor-fold>
+
+    //<editor-fold default state="collapsed" desc="Region: IKeyboard">
+    override fun setKbdLocValue(value: String) {
+        tvLoc.text = value
+    }
+
+    override fun setKbdCodeValue(value: String) {
+        tvCode.text = value
+    }
+
+    override fun setKbdNumValue(value: String) {
+        tvNum.text = value
+    }
+
+    override fun setKbdSelValue(value: String) {
+        tvSel.text = value
+    }
+
     //</editor-fold>
 
     private lateinit var binding: EditFragmentBinding//? = null
@@ -97,7 +112,4 @@ class EditFragment: Fragment(), View.OnClickListener, ITimePicker {
     private lateinit var tvSel4: TextView
 
     private lateinit var btnTime: Button
-
-    private lateinit var viewStub: ViewStub
-
 }

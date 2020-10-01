@@ -41,5 +41,15 @@
     <!-- Button labels. -->
     <string name="lbl_cancel">Cancel</string>
     <string name="lbl_ok">OK</string>
+    <string name="lbl_save">Save</string>
+    <string name="lbl_time">Time</string>
+
+    <!-- Labels. -->
+    <string name="lbl_location">Location</string>
+    <string name="lbl_code">Code</string>
+    <string name="lbl_number">Number</string>
+    <string name="lbl_select">Select</string>
+    <string name="lbl_selects">Other<br></br>Selects</string> <!-- \n doesn't work in resource -->
+
 
 </resources>
