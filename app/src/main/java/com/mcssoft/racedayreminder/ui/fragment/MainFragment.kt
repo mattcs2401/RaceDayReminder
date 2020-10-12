@@ -3,9 +3,9 @@ package com.mcssoft.racedayreminder.ui.fragment
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.FrameLayout
-import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mcssoft.racedayreminder.R
@@ -14,7 +14,7 @@ import com.mcssoft.racedayreminder.databinding.MainFragmentBinding
 import com.mcssoft.racedayreminder.model.RaceViewModel
 import com.mcssoft.racedayreminder.observer.RaceListObserver
 import com.mcssoft.racedayreminder.utility.BackPressCB
-import com.mcssoft.racedayreminder.utility.Constants
+import com.mcssoft.racedayreminder.utility.Utility
 import kotlinx.android.synthetic.main.main_activity.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -35,6 +35,9 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        checkArguments()
+
         // Set toolbar. Note: synthetic used here because can't seem to use view binding.
         (activity?.id_toolbar)?.title = getString(R.string.title_race_day)
 
@@ -182,6 +185,22 @@ class MainFragment : Fragment() {
 //        }
     }
     //</editor-fold>
+
+    private fun checkArguments() {
+        // TODO("Not yet implemented")
+        val bundle = arguments
+        if(bundle != null) {
+            when {
+                bundle.containsKey("key_new_arguments") -> {
+                    val value = bundle.getSerializable("key_new_arguments").toString()
+                    raceViewModel.insertRace(Utility().deSerialise(value))
+//                    Toast.makeText(requireContext(), "MainFragment arguments from EditFragment.", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+        val bp = "bp"
+    }
+
 
     private fun registerReceivers() {
         // TODO("Not yet implemented")

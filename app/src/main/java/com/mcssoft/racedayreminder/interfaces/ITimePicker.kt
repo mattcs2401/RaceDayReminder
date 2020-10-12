@@ -9,6 +9,9 @@ interface ITimePicker {
     /**
      * Set the time (in mSec).
      * @param time: The time in mSec.
+     * @param hour: The hour value.
+     * @param minute: The minute value.
+     *
      */
-    fun setTime(time: Long)
+    fun setTime(time: Long, hour: Int, minute: Int)
 }

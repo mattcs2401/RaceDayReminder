@@ -13,3 +13,10 @@ https://stackoverflow.com/questions/43099750/android-data-binding-why-doesnt-pas
 
 https://mobikul.com/android-viewstub-using-data-binding/
 
+-----------
+Coroutines:
+-----------
+
+https://medium.com/swlh/kotlin-coroutines-in-android-summary-1ed3048f11c3
+
+

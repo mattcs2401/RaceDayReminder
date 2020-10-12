@@ -10,8 +10,8 @@ interface IRaceDAO {
     @Query("select * from race_details")
     fun getAllRaces(): LiveData<List<Race>>
 
-//    @Insert(onConflict = OnConflictStrategy.REPLACE)
-//    fun insertRace(race: Race): Long
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertRace(race: Race): Long
 //
 //    @Query("select * from race_details where _id = :id")
 //    fun getRace(id: Long): Race  //Note: Can't do a return of LiveData<Race>.

@@ -1,4 +1,4 @@
-package com.mcssoft.raceday.ui.dialog
+package com.mcssoft.racedayreminder.ui.dialog
 
 import java.util.*
 import android.os.Bundle
@@ -15,6 +15,10 @@ import com.mcssoft.racedayreminder.interfaces.ITimePicker
 class TimePickDialog(private val iTime: ITimePicker) : DialogFragment(), TimePickerDialog.OnTimeSetListener {
 
     // TODO: https://hackernoon.com/how-to-use-new-material-date-picker-for-android-s7k32w0
+
+    companion object {
+        const val TAG = "TimePickDialog"
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
@@ -40,13 +44,13 @@ class TimePickDialog(private val iTime: ITimePicker) : DialogFragment(), TimePic
     /**
      * TimePickerDialog.OnTimeSetListener
      */
-    override fun onTimeSet(view: TimePicker, hourOfDay: Int, minute: Int) {
+    override fun onTimeSet(view: TimePicker, hour: Int, minute: Int) {
         // Get local calendar.
         val calendar = Calendar.getInstance(Locale.getDefault())
         // Set calendar values.
-        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+        calendar.set(Calendar.HOUR_OF_DAY, hour)
         calendar.set(Calendar.MINUTE, minute)
-        iTime.setTime(calendar.timeInMillis)
+        iTime.setTime(calendar.timeInMillis, hour, minute)
         this.dialog!!.cancel()
     }
 }

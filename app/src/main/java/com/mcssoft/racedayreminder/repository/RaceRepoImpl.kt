@@ -9,6 +9,7 @@ interface IRaceRepo {
     // Here for DI. Can't seem to get it to work when in a separate file.
     suspend fun getAllRaces() : LiveData<List<Race>>
     suspend fun getRaceCount(): LiveData<Int>
+    suspend fun insertRace(race: Race): Long
 }
 
 /**
@@ -30,10 +31,10 @@ class RaceRepoImpl(private val context: Context) : IRaceRepo {
      */
     override suspend fun getRaceCount(): LiveData<Int> = iRaceDao.getCount()
 
-//    /**
-//     * Insert a new Race.
-//     * // TBA - a return value Long ?
-//     */
-//    override suspend fun insertRace(race: Race) = raceDao.insertRace(race)
+    /**
+     * Insert a new Race.
+     * // TBA - a return value Long ?
+     */
+    override suspend fun insertRace(race: Race) = iRaceDao.insertRace(race)
 
 }

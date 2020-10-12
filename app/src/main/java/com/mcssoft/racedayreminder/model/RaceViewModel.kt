@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mcssoft.racedayreminder.database.entity.Race
 import com.mcssoft.racedayreminder.repository.IRaceRepo
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /**
@@ -21,24 +22,15 @@ class RaceViewModel(private val iRaceRepo: IRaceRepo) : ViewModel() {
         setCount()
     }
 
-//    fun getAllRaces(): LiveData<List<Race>> {
-//        lateinit var value: LiveData<List<Race>>
-//
-//        viewModelScope.launch {
-//            val result = iRaceRepo.getAllRaces()//= async(Dispatchers.IO){ raceRepo.getAllRaces() }
-//            value = result//.await()
-//        }
-//        return value
-//    }
+    fun isEmpty(): Boolean {
+        return cache.value!!.isEmpty()
+    }
 
-//    fun getRaceCount(): LiveData<Int> {
-//        lateinit var count: LiveData<Int>
-//        viewModelScope.launch {
-//            val result = iRaceRepo.getRaceCount()// = async(Dispatchers.IO) { raceRepo.getRaceCount() }
-//            count = result//.await()
-//        }
-//        return count
-//    }
+    fun insertRace(race: Race) {
+        viewModelScope.launch(Dispatchers.IO) {
+            iRaceRepo.insertRace(race)
+        }
+    }
 
     private fun setRaces() {
         viewModelScope.launch {
@@ -52,7 +44,4 @@ class RaceViewModel(private val iRaceRepo: IRaceRepo) : ViewModel() {
         }
     }
 
-    fun isEmpty(): Boolean {
-        return cache.value!!.isEmpty()
-    }
 }

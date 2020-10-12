@@ -47,9 +47,11 @@
     <!-- Labels. -->
     <string name="lbl_location">Location</string>
     <string name="lbl_code">Code</string>
-    <string name="lbl_number">Number</string>
+    <string name="lbl_number">Race No</string>
     <string name="lbl_select">Select</string>
-    <string name="lbl_selects">Other<br></br>Selects</string> <!-- \n doesn't work in resource -->
+    <string name="lbl_selects">Other\nSelects</string>
 
-
+    // Text filter values.
+    <string name="city_codes">ABCDEFILMNOPQSTVXZ</string>
+    <string name="race_codes">RTGS</string>
 </resources>

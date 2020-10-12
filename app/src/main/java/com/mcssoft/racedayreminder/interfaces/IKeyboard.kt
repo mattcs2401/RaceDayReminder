@@ -1,11 +1,17 @@
 package com.mcssoft.racedayreminder.interfaces
 
 interface IKeyboard {
-    fun setKbdLocValue(value: String)
+    fun onCityCodeValue(value: String)
 
-    fun setKbdCodeValue(value: String)
+    fun onRaceCodeValue(value: String)
 
-    fun setKbdNumValue(value: String)
+    fun onRaceNumValue(value: String)
 
-    fun setKbdSelValue(value: String)
+    fun onRaceSelValue(value: String)
+
+    fun onRaceSel2Value(value: String)
+
+    fun onRaceSel3Value(value: String)
+
+    fun onRaceSel4Value(value: String)
 }
